@@ -29,7 +29,7 @@ ext {
     libraryName = 'Beapp Kryo serializers'
     libraryGroupId = 'fr.beapp.kryo'
     libraryArtifactId = 'kryo-serializers'
-    libraryVersion = '1.0-SNAPSHOT'
+    libraryVersion = '1.1-SNAPSHOT'
     libraryPackaging = 'jar'
 
     libraryDescription = 'A library providing extas serializers for Kryo'
