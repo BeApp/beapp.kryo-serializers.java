@@ -1,0 +1,60 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.6.2'
+    }
+}
+
+repositories {
+    jcenter()
+}
+
+apply plugin: 'java'
+
+sourceCompatibility = JavaVersion.VERSION_1_7
+targetCompatibility = JavaVersion.VERSION_1_7
+
+dependencies {
+    compile 'com.esotericsoftware.kryo:kryo:2.24.0'
+
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-core:2.10.0'
+}
+
+ext {
+    libraryName = 'Beapp Kryo serializers'
+    libraryGroupId = 'fr.beapp.kryo'
+    libraryArtifactId = 'kryo-serializers'
+    libraryVersion = '1.0'
+    libraryPackaging = 'jar'
+
+    libraryDescription = 'A library providing extas serializers for Kryo'
+
+    siteUrl = 'https://bitbucket.org/beappers/beapp.kryo-serializers.java'
+    gitUrl = 'git@bitbucket.org:beappers/beapp.kryo-serializers.java.git'
+
+    developerId = 'dvilleneuve'
+    developerName = 'Damien Villeneuve'
+    developerEmail = 'd.villeneuve@beapp.fr'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+apply from: 'https://bitbucket.org/beappers/beapp.gradle/raw/master/publish-library.gradle'
+
+
+apply plugin: 'org.sonarqube'
+sonarqube {
+    properties {
+        property 'sonar.host.url', 'https://sonar.beapp.fr'
+        property 'sonar.projectKey', "${libraryGroupId}:${libraryArtifactId}:java"
+        property 'sonar.projectName', "${libraryName} - Java"
+        property 'sonar.projectDescription', "${libraryDescription}"
+        property 'sonar.projectVersion', "${libraryVersion}"
+        property 'sonar.sourceEncoding', 'UTF-8'
+        property 'sonar.exclusions', '**/*Test.java'
+    }
+}
