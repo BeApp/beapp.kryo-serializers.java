@@ -17,3 +17,17 @@ dependencies {
     compile 'fr.beapp.kryo:kryo-serializers:<version>'
 }
 ```
+
+# Usage
+
+You just have to register the needed serializers in a `Kryo` instance like this :
+
+```
+kryo.register(Duration.class, new ThreeTenDurationSerializer());
+```
+
+You can register all serializers at once by using :
+
+```
+ThreeTenSerializers.registerAllSerializers(kryo);
+```
